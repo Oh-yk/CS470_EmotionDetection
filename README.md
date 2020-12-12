@@ -43,7 +43,7 @@ To make 'train_ckplus_Mask_원본.csv', 'train_ckplus_NoMask_원본.csv', 'mask_
     $python gen_masked.py -data --dataset C
 
 To make 'train_fer2013_Mask_원본.csv', 'train_fer2013_NoMask_원본.csv'   
-RUN this three times 
+Run the below command three times 
     
     $python gen_masked.py -data --dataset F
 
