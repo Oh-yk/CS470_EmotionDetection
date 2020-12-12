@@ -88,39 +88,57 @@ Make sure that the target files(train.csv, test.csv, val.csv, finaltest.csv, tra
 
             python main.py [-t] [--data [data_path]] [--hparams [hyperparams]]
                                         [--epochs] [--learning_rate] [--batch_size]
-                                        [--m [channel50]] [--n [stn]] [--l [regulizer]]
+                                        [--channel50] [--stn] [--regulizer]
                 --data                       Data folder that contains training and validation files
                 --train                      True when training
                 --hparams                    True when changing the hyperparameters
                 --epochs                     Number of epochs
                 --learning_rate              Learning rate value
                 --batch_size                 Training/validation batch size
-                --m                          To modify the channel number, set True
-                --n                          To remove stn process, set False
-                --l                          To apply regulization, set True
+                --channel50                  To modify the channel number as 50, set True
+                --stn                        To remove stn process, set False
+                --regulizer                  To apply regulization, set True
                 
                 ## Run the following code:
                     Original deep_emotion model:
                         python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 
                     No STN model:
-                        python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 --n False
+                        python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 --stn False
                     Channel_50 model:
-                        python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 --m True
+                        python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 --channel50 True
                     L1_0.001 model:
-                        python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 --l True
+                        python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 --regulizer True
 
 #### &nbsp;&nbsp;&nbsp;&nbsp;To validate the model
 
 Make sure that the data path(finaltest folder) should contain the test images for the target dataset.   
 
-            python visualize.py [-t] [-c] [--data  [data_path]] [--model [model_path]]
+            python visualize.py [-t] [-c] [--data  [data_path]] [--file  [file_path]] [--model [model_path]]
+                                        [--channel50] [--stn] [--regulizer]
             
-                --data                       Data folder that contains test images and test CSV file
+                --data                       Path to the finaltest folder that contains finaltest images
+                --file                       Path to the finaltest.csv
                 --model                      Path to pretrained model
-                --test_cc                    Calculate the test accuracy
+                --test_cc                    Returns test accuracy and visualization of confusion matrix
+                --saliency_map               Returns saliency map for 10 test images
+                --channel50                  If the pretrained model's channel number is 50, set True
+                --stn                        If the pretrained model ignored stn process, set False
+                --regulizer                  If the pretrained model used regulization, set True
                 
                 ## Run the following code:
-                    python visualize.py -t --data './data' --model 'model_path' ## Enter the model path
+                    Original pretrained deep_emotion model:
+                        python visualize.py -t --data './data' --model 'model_path' ## Enter the model path
+                        
+                    No STN pretrained model:
+                        python visualize.py -t --data './data' --model 'model_path' --stn False
+                        
+                    Channel_50 pretrained model:
+                        python visualize.py -t --data './data' --model 'model_path' --channel50 True
+
+                    L1_0.001 pretrained model:
+                        python visualize.py -t --data './data' --model 'model_path' --regulizer True
+
+                    
         
     
 
