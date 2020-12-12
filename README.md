@@ -1,17 +1,15 @@
 # CS470_EmotionDetection
 CS470 Final Project, emotion detection with masked data
 
-** This project is based on the 'Deep-Emotion (https://github.com/omarsayed7/Deep-Emotion)' paper**
+** This project is based on the 'Deep-Emotion (https://github.com/omarsayed7/Deep-Emotion)' paper **
 
 ## 1. Architecture
 ## 2. Datasets
     JAFFE
     CK+
-    FER2013
+    FER2013 skdjfl;jalgkj;
 
 ## 3. Prerequisites
-Install mtcnn
-
 ## 4. Structure of this repository
 main.py : setup of the dataset and training loop
 visualize.py : the source code for evaluating the model on the data
