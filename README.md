@@ -111,7 +111,7 @@ Make sure that the target files(train.csv, test.csv, val.csv, finaltest.csv, tra
 
 #### &nbsp;&nbsp;&nbsp;&nbsp;To validate the model
 
-Make sure that the data path should contain the test images from finaltest folder for the target dataset.   
+Make sure that the data path(finaltest folder) should contain the test images for the target dataset.   
 
             python visualize.py [-t] [-c] [--data  [data_path]] [--model [model_path]]
             
