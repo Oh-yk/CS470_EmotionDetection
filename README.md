@@ -7,16 +7,16 @@ CS470 Final Project, emotion detection with masked data
 ## 2. Datasets
     JAFFE
     CK+
-    FER2013 skdjfl;jalgkj;
+    FER2013
 
 ## 3. Prerequisites
 ## 4. Structure of this repository
-main.py : setup of the dataset and training loop
-visualize.py : the source code for evaluating the model on the data
-deep_emotion.py : the model class
-data_loaders.py : the dataset class
-generate_data : setup of the dataset
-gen_masked.py : the source code for generating the masked data
+main.py : setup of the dataset and training loop  
+visualize.py : the source code for evaluating the model on the data  
+deep_emotion.py : the model class  
+data_loaders.py : the dataset class  
+generate_data : setup of the dataset  
+gen_masked.py : the source code for generating the masked data  
 
 ## 5. Usage
 ###    a) Data Preparation
@@ -60,27 +60,50 @@ by uncommenting the below parts one by one at sequence in 'gen_masked.py' file
 Finally, combine three files into one, and name it 'train_fer2013_Mask_원본.csv' (or 'train_fer2013_NoMask_원본.csv')  
 
 ###    b) How to run
-&nbsp;&nbsp;&nbsp;&nbsp;Setup the datset
+#### &nbsp;&nbsp;&nbsp;&nbsp;Setup the datset
 
             python main.py [-s [True]] [-d [data_path]]
                 --setup                     Setup the datset for the first time
                 --data                       Data folder that contains data files
                 
-&nbsp;&nbsp;&nbsp;&nbsp;To train the model
+                ## Run the following code:
+                    python main.py -s True -d './data'
+                
+#### &nbsp;&nbsp;&nbsp;&nbsp;To train the model
 
             python main.py [-t] [--data [data_path]] [--hparams [hyperparams]]
                                         [--epochs] [--learning_rate] [--batch_size]
                                         [--m [channel50]] [--n [stn]] [--l [regulizer]]
-                --data                      Data folder that contains training and validation files
+                --data                       Data folder that contains training and validation files
                 --train                      True when training
-                --hparams               True when changing the hyperparameters
-                --epochs                  Number of epochs
-                --learning_rate         Learning rate value
-                --batch_size            Training/validation batch size
+                --hparams                    True when changing the hyperparameters
+                --epochs                     Number of epochs
+                --learning_rate              Learning rate value
+                --batch_size                 Training/validation batch size
                 --m                          To modify the channel number, set True
-                --n                           To remove stn process, set False
-                --l                            To apply regulization, set True
-                                                                
+                --n                          To remove stn process, set False
+                --l                          To apply regulization, set True
+                
+                ## Run the following code:
+                    Original deep_emotion model:
+                        python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 
+                    No STN model:
+                        python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 --n False
+                    Channel_50 model:
+                        python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 --m True
+                    L1_0.001 model:
+                        python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 --l True
+
+#### &nbsp;&nbsp;&nbsp;&nbsp;To validate the model
+
+            python visualize.py [-t] [-c] [--data  [data_path]] [--model [model_path]]
+            
+                --data                       Data folder that contains test images and test CSV file
+                --model                      Path to pretrained model
+                --test_cc                    Calculate the test accuracy
+                
+                ## Run the following code:
+                    python visualize.py -t --data './data' --model 'model_path' ## Enter the model path
         
     
 
