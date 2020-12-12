@@ -2,12 +2,15 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-class Deep_Emotion(nn.Module, num_channel, stn):
-    def __init__(self):
+class Deep_Emotion(nn.Module):
+    def __init__(self, num_channel, stn):
         '''
         Deep_Emotion class contains the network architecture.
         '''
         super(Deep_Emotion,self).__init__()
+        self.num_channel = num_channel
+        self.stn = stn
+        
         self.conv1 = nn.Conv2d(1,num_channel,3)
         self.conv2 = nn.Conv2d(num_channel,num_channel,3)
         self.pool2 = nn.MaxPool2d(2,2)
@@ -39,7 +42,7 @@ class Deep_Emotion(nn.Module, num_channel, stn):
         self.fc_loc[2].weight.data.zero_()
         self.fc_loc[2].bias.data.copy_(torch.tensor([1, 0, 0, 0, 1, 0], dtype=torch.float))
 
-    def stn(self, x):
+    def model_stn(self, x):
         xs = self.localization(x)
         xs = xs.view(-1, 640)
         theta = self.fc_loc(xs)
@@ -52,8 +55,8 @@ class Deep_Emotion(nn.Module, num_channel, stn):
     def forward(self,input):
         ## For Jaffe
         out = F.interpolate(input,size=(48,48))
-        if stn is True:
-            out = self.stn(out)
+        if self.stn is True:
+            out = self.model_stn(out)
             
         out = F.relu(self.conv1(out))
 
