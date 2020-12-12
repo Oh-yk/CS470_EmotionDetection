@@ -10,6 +10,8 @@ CS470 Final Project, emotion detection with masked data
     FER2013
 
 ## 3. Prerequisites
+Install mtcnn
+
 ## 4. Structure of this repository
 main.py : setup of the dataset and training loop
 visualize.py : the source code for evaluating the model on the data
