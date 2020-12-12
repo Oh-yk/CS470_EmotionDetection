@@ -22,7 +22,7 @@ def Train(epochs,train_loader,val_loader,criterion,optmizer,device, regulizer):
     Training Loop
     '''
     print("===================================Start Training===================================")
-    best_accuracy = 0
+    lowest_loss = 0
     
     for e in range(epochs):
         train_loss = 0
@@ -68,9 +68,9 @@ def Train(epochs,train_loader,val_loader,criterion,optmizer,device, regulizer):
         train_acc = train_correct.double() / len(train_dataset)
         validation_loss =  validation_loss / len(validation_dataset)
         val_acc = val_correct.double() / len(validation_dataset)
-        if val_acc >= best_accuracy:
-            best_accuracy = val_acc
-            torch.save(net.state_dict(), '[MODEL]deep_emotion-{}-{}-{}_best.pt'.format(epochs,batchsize,lr))
+        if validation_loss <= lowest_loss:
+            lowest_loss = validation_loss
+            torch.save(net.state_dict(), '[MODEL]deep_emotion-{}-{}-{}-{}-{}_best.pt'.format(epochs,batchsize,lr,validation_loss, val_acc))
         print('Epoch: {} \tTraining Loss: {:.8f} \tValidation Loss {:.8f} \tTraining Acuuarcy {:.3f}% \tValidation Acuuarcy {:.3f}%'
                                                            .format(e+1, train_loss,validation_loss,train_acc * 100, val_acc*100))
     
@@ -85,9 +85,9 @@ if __name__ == '__main__':
                                help='data folder that contains data files that downloaded from kaggle (train.csv and test.csv)')
     parser.add_argument('-hparams', '--hyperparams', type=bool,
                                help='True when changing the hyperparameters e.g (batch size, LR, num. of epochs)')
-    parser.add_argument('-m', '--channel50', type=bool, help= 'number of model's channel')
-    parser.add_argument('-n', '--stn', type=bool, help= 'if you don't want to use stn, type False')
-    parser.add_argument('-e', '--epochs', type= int, help= 'number of epochs')
+    parser.add_argument('-m', '--channel50', type=bool, help= 'To modify the channel number as 50, set True')
+    parser.add_argument('-n', '--stn', type=bool, help= 'To remove stn process, set False')
+    parser.add_argument('-e', '--epochs', type= int, help= 'To apply regulization, set True')
     parser.add_argument('-lr', '--learning_rate', type= float, help= 'value of learning rate')
     parser.add_argument('-bs', '--batch_size', type= int, help= 'training/validation batch size')
     parser.add_argument('-l', '--regulizer', type=bool, help='True when adding L1 regulization')
@@ -129,10 +129,10 @@ if __name__ == '__main__':
         train_img_dir = args.data+'/'+'train/'
         validation_img_dir = args.data+'/'+'val/'
         
-    if args.regulizer:
-        regulizer = args.regulizer
-    else:
-        regulizer = False
+        if args.regulizer:
+            regulizer = args.regulizer
+        else:
+            regulizer = False
     
         transformation= transforms.Compose([transforms.ToTensor(),transforms.Normalize((0.5,),(0.5,))])
         train_dataset= Plain_Dataset(csv_file=traincsv_file, img_dir = train_img_dir, datatype = 'train', transform = transformation)
