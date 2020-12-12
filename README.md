@@ -127,16 +127,16 @@ Make sure that the data path(finaltest folder) should contain the test images fo
                 
                 ## Run the following code:
                     Original pretrained deep_emotion model:
-                        python visualize.py -t --data './data' --model 'model_path' ## Enter the model path
+                        python visualize.py -t --data './data/finaltest' --file './data/finaltest.csv' --model 'model_path' ## Enter the model path
                         
                     No STN pretrained model:
-                        python visualize.py -t --data './data' --model 'model_path' --stn False
+                        python visualize.py -t --data './data/finaltest' --file './data/finaltest.csv' --model 'model_path' --stn False
                         
                     Channel_50 pretrained model:
-                        python visualize.py -t --data './data' --model 'model_path' --channel50 True
+                        python visualize.py -t --data './data/finaltest' --file './data/finaltest.csv' --model 'model_path' --channel50 True
 
                     L1_0.001 pretrained model:
-                        python visualize.py -t --data './data' --model 'model_path' --regulizer True
+                        python visualize.py -t --data './data/finaltest' --file './data/finaltest.csv' --model 'model_path' --regulizer True
 
                     
         
