@@ -43,7 +43,7 @@ To make 6 files and 1 folder as follows
 'test_jaffe_NoMask.csv'   
 'masked_jaffedbase' folder that consists of masked images.  
     
-    $python gen_masked.py -data --dataset J
+    $python gen_masked.py -data J
 
 To make 6 files and 1 folder   
 'train_ckplus_Mask_원본.csv'   
@@ -54,7 +54,7 @@ To make 6 files and 1 folder
 'test_ckplus_NoMask.csv'   
 'mask_CKplus' folder that consists of masked images.  
     
-    $python gen_masked.py -data --dataset C
+    $python gen_masked.py -data C
 
 To make 6 files   
 'train_fer2013_Mask_원본.csv'   
@@ -64,7 +64,7 @@ To make 6 files
 'train_fer2013_NoMask.csv'   
 'test_fer2013_NoMask.csv'   
     
-    $python gen_masked.py -data --dataset F
+    $python gen_masked.py -data F
 
 
 ###    b) How to run
