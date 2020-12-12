@@ -84,6 +84,8 @@ Then run below code.
                 
 #### &nbsp;&nbsp;&nbsp;&nbsp;To train the model
 
+Make sure that the target files(train.csv, test.csv, val.csv, finaltest.csv, train folder, val folder, finaltest folder) that you want to use for training are the files from the target dataset.   
+
             python main.py [-t] [--data [data_path]] [--hparams [hyperparams]]
                                         [--epochs] [--learning_rate] [--batch_size]
                                         [--m [channel50]] [--n [stn]] [--l [regulizer]]
@@ -108,6 +110,8 @@ Then run below code.
                         python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 --l True
 
 #### &nbsp;&nbsp;&nbsp;&nbsp;To validate the model
+
+Make sure that the data path should contain the test images from finaltest folder for the target dataset.   
 
             python visualize.py [-t] [-c] [--data  [data_path]] [--model [model_path]]
             
