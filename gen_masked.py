@@ -1,3 +1,16 @@
+from __future__ import print_function
+import argparse
+import numpy  as np
+from PIL import Image
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torchvision
+import torch.optim as optim
+from torch.utils.data import DataLoader, Dataset
+from torch.utils.data.sampler import SubsetRandomSampler
+from torchvision import transforms
+
 import os
 import cv2
 import scipy as sp
@@ -12,6 +25,7 @@ from PIL import Image
 import pandas as pd
 from tqdm import tqdm
 from pandas import Series, DataFrame
+import torch
 
 np.random.seed(470)
 
@@ -57,10 +71,11 @@ def Jaffe():
     df.to_csv('./data/train_jaffe_NoMask_원본.csv')
     print('Making csv file for nomask jaffedbase dataset finish')
     
-    data_path = './data/jaffedbase'
-    data_dir_list = os.listdir(data_path)
     if not os.path.exists('./data/masked_jaffedbase'):
         os.mkdir('./data/masked_jaffedbase')
+    data_path = './data/jaffedbase'
+    data_dir_list = os.listdir(data_path)
+    
     for dataset in data_dir_list:
         input_img=plt.imread(data_path+'/'+ dataset)
         if ('KM' in dataset) or ('KA.AN1.39.tiff' == dataset):
@@ -84,7 +99,7 @@ def Jaffe():
         plt.imsave(save_paths, pixels)
     print('Making masked images for Jaffe finish')
     
-    data_path = './data/processed_jaffedbase'
+    data_path = './data/masked_jaffedbase'
     data_dir_list = os.listdir(data_path)
     dict_data = dict(emotion= [], pixels= [])
     
@@ -135,14 +150,14 @@ def Jaffe():
     
 def Fer():
     data = pd.read_csv('./data/fer2013.csv')
-    for i in range(3):
-        if (i==0):
-            data = data[:11962]
-        elif (i==1):
-            data = data[11962:23924]
-        elif (i==2):
-            data = data[23924:]
-        raw_data = data.sample(frac=0.1, replace=True, random_state=1)
+    for k in range(3):
+        if (k==0):
+            raw_data = data[:11962]
+        elif (k==1):
+            raw_data = data[11962:23924]
+        elif (k==2):
+            raw_data = data[23924:]
+        raw_data = raw_data.sample(frac=0.1, replace=True, random_state=1)
 
         dict_data = dict(emotion= [], pixels= [])
         dict_mask_data = dict(emotion= [], pixels= [])
@@ -191,10 +206,10 @@ def Fer():
                 dict_data['emotion'].append(label)
                 dict_data['pixels'].append(nomask_pixels)
         df = DataFrame(dict_data)
-        df.to_csv(f'./data/train_fer2013_NoMask_원본_frac{i}.csv')
+        df.to_csv(f'./data/train_fer2013_NoMask_원본_frac{k}.csv')
 
         df = DataFrame(dict_mask_data)
-        df.to_csv(f'./data/train_fer2013_Mask_원본_frac{i}.csv')
+        df.to_csv(f'./data/train_fer2013_Mask_원본_frac{k}.csv')
     
     f1_path = './data/train_fer2013_NoMask_원본_frac0.csv'
     f1_mask_path = './data/train_fer2013_Mask_원본_frac0.csv'
@@ -245,6 +260,13 @@ def CKplus():
     
     if not os.path.exists('./data/CKplus'):
         os.mkdir('./data/CKplus')
+        os.mkdir('./data/CKplus/anger')
+        os.mkdir('./data/CKplus/contempt')
+        os.mkdir('./data/CKplus/disgust')
+        os.mkdir('./data/CKplus/fear')
+        os.mkdir('./data/CKplus/happy')
+        os.mkdir('./data/CKplus/sadness')
+        os.mkdir('./data/CKplus/surprise')
         
     for dataset in data_dir_list:
         img_list=os.listdir(data_path+'/'+dataset)
