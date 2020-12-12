@@ -15,12 +15,12 @@ Install mtcnn
     $pip install mtcnn
 
 ## 4. Structure of this repository
-main.py : setup of the dataset and training loop  
-visualize.py : the source code for evaluating the model on the data  
-deep_emotion.py : the model class  
-data_loaders.py : the dataset class  
-generate_data : setup of the dataset  
-gen_masked.py : the source code for generating the masked data  
+main.py : setup of the dataset and training loop
+visualize.py : the source code for evaluating the model on the data
+deep_emotion.py : the model class
+data_loaders.py : the dataset class
+generate_data : setup of the dataset
+gen_masked.py : the source code for generating the masked data
 
 ## 5. Usage
 ###    a) Data Preparation
@@ -34,80 +34,62 @@ Make data/jaffedbase, data/CK+48 and data/fer2013.csv file.
 Make a new folder which name is 'data' and insert all things inside it.   
 Make sure that dataset/jaffedbase, dataset/CK+48, dataset/fer2013.csv.  
 
-To make 'train_jaffe_Mask_원본.csv', 'train_jaffe_NoMask_원본.csv', 'masked_jaffedbase' folder that consists of masked images.  
+To make 6 files and 1 folder as follows   
+'train_jaffe_Mask_원본.csv'   
+'train_jaffe_Mask.csv'   
+'test_jaffe_Mask.csv'   
+'train_jaffe_NoMask_원본.csv'   
+'train_jaffe_NoMask.csv'   
+'test_jaffe_NoMask.csv'   
+'masked_jaffedbase' folder that consists of masked images.  
     
     $python gen_masked.py -data --dataset J
 
-To make 'train_ckplus_Mask_원본.csv', 'train_ckplus_NoMask_원본.csv', 'mask_CKplus' folder that consists of masked images
+To make 6 files and 1 folder   
+'train_ckplus_Mask_원본.csv'   
+'train_ckplus_Mask.csv'   
+'test_ckplus_Mask.csv'   
+'train_ckplus_NoMask_원본.csv'   
+'train_ckplus_NoMask.csv'   
+'test_ckplus_NoMask.csv'   
+'mask_CKplus' folder that consists of masked images.  
     
     $python gen_masked.py -data --dataset C
 
-To make 'train_fer2013_Mask_원본.csv', 'train_fer2013_NoMask_원본.csv'   
-Run the below command three times 
+To make 6 files   
+'train_fer2013_Mask_원본.csv'   
+'train_fer2013_Mask.csv'   
+'test_fer2013_Mask.csv'   
+'train_fer2013_NoMask_원본.csv'   
+'train_fer2013_NoMask.csv'   
+'test_fer2013_NoMask.csv'   
+'mask_CKplus' folder that consists of masked images.  
     
     $python gen_masked.py -data --dataset F
 
-by uncommenting the below parts one by one at sequence in 'gen_masked.py' file   
-
-    data = data[:11962]
-    # data = data[11962:23924]
-    # data = data[23924:]
-
-    df.to_csv('./data/train_fer2013_NoMask_원본_frac1.csv')
-    # df.to_csv('./data/train_fer2013_NoMask_원본_frac2.csv')
-    # df.to_csv('./data/train_fer2013_NoMask_원본_frac3.csv')
-
-    df.to_csv('./data/train_fer2013_Mask_원본_frac1.csv')
-    # df.to_csv('./data/train_fer2013_Mask_원본_frac2.csv')
-    # df.to_csv('./data/train_fer2013_Mask_원본_frac3.csv')
-
-Finally, combine three files into one, and name it 'train_fer2013_Mask_원본.csv' (or 'train_fer2013_NoMask_원본.csv')  
 
 ###    b) How to run
-#### &nbsp;&nbsp;&nbsp;&nbsp;Setup the datset
+&nbsp;&nbsp;&nbsp;&nbsp;Setup the datset
 
             python main.py [-s [True]] [-d [data_path]]
                 --setup                     Setup the datset for the first time
                 --data                       Data folder that contains data files
                 
-                ## Run the following code:
-                    python main.py -s True -d './data'
-                
-#### &nbsp;&nbsp;&nbsp;&nbsp;To train the model
+&nbsp;&nbsp;&nbsp;&nbsp;To train the model
 
             python main.py [-t] [--data [data_path]] [--hparams [hyperparams]]
                                         [--epochs] [--learning_rate] [--batch_size]
                                         [--m [channel50]] [--n [stn]] [--l [regulizer]]
-                --data                       Data folder that contains training and validation files
+                --data                      Data folder that contains training and validation files
                 --train                      True when training
-                --hparams                    True when changing the hyperparameters
-                --epochs                     Number of epochs
-                --learning_rate              Learning rate value
-                --batch_size                 Training/validation batch size
+                --hparams               True when changing the hyperparameters
+                --epochs                  Number of epochs
+                --learning_rate         Learning rate value
+                --batch_size            Training/validation batch size
                 --m                          To modify the channel number, set True
-                --n                          To remove stn process, set False
-                --l                          To apply regulization, set True
-                
-                ## Run the following code:
-                    Original deep_emotion model:
-                        python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 
-                    No STN model:
-                        python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 --n False
-                    Channel_50 model:
-                        python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 --m True
-                    L1_0.001 model:
-                        python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 --l True
-
-#### &nbsp;&nbsp;&nbsp;&nbsp;To validate the model
-
-            python visualize.py [-t] [-c] [--data  [data_path]] [--model [model_path]]
-            
-                --data                       Data folder that contains test images and test CSV file
-                --model                      Path to pretrained model
-                --test_cc                    Calculate the test accuracy
-                
-                ## Run the following code:
-                    python visualize.py -t --data './data' --model 'model_path' ## Enter the model path
+                --n                           To remove stn process, set False
+                --l                            To apply regulization, set True
+                                                                
         
     
 
