@@ -1,3 +1,4 @@
+from __future__ import print_function
 import argparse
 import os
 import cv2
@@ -8,19 +9,20 @@ from torchvision import transforms
 from PIL import Image
 from torch.utils.data import DataLoader, Dataset
 import torch.nn.functional as F
-import matplotlib
-matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
+import seaborn as sn
 
 from deep_emotion import Deep_Emotion
 from data_loaders import Plain_Dataset, eval_data_dataloader
 
 parser = argparse.ArgumentParser(description="Configuration of testing process")
-parser.add_argument('-d', '--csv_data', type=str,required = True, help='File path that relates to the finaltest.csv')
-parser.add_argument('-b', '--img_dir', type=str, required = True, help='Folder path that includes test images')
-parser.add_argument('-m', '--model', type=str,required = True, help='Path to pretrained model')
+parser.add_argument('-d', '--data', type=str,required = True, help='Path to the finaltest folder that contains finaltest images')
+parser.add_argument('-c', '--file', type=str,required = True, help='Path to the finaltest.csv')
+parser.add_argument('-f', '--model', type=str,required = True, help='Path to pretrained model')
 parser.add_argument('-t', '--test_acc', action='store_true', help='Returns test accuracy and visualization of confusion matrix')
 parser.add_argument('-s', '--saliency_map', action='store_true', help='Returns saliency map for 10 test images')
+parser.add_argument('-m', '--channel50', type=bool, help= 'number of channel')
+parser.add_argument('-n', '--stn', type=bool, help= 'if you do not want to use stn, type False')
 
 args = parser.parse_args()
 
@@ -32,14 +34,23 @@ transformation = transforms.Compose([
 ])
 
 dataset = Plain_Dataset(
-    csv_file=args.csv_data, 
-    img_dir=args.img_dir, 
+    csv_file=args.file, 
+    img_dir=args.data, 
     datatype='finaltest',
     transform=transformation
 )
 
+if args.channel50:
+    num_channel = 50
+else:
+    num_channel = 10
 
-net = Deep_Emotion()
+if args.stn:
+    stn = args.stn
+else:
+    stn = True
+
+net = Deep_Emotion(num_channel, stn)
 net.load_state_dict(torch.load(args.model))
 net.to(device)
 net.eval()
@@ -172,16 +183,3 @@ if args.saliency_map:
 
             if max_images <= num_images:
                 break
-
-
-    
-    
-            
-
-    
-
-    
-
-
-
-
