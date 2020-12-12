@@ -32,39 +32,48 @@ Download the dataset from following links:
     
 Make data/jaffedbase, data/CK+48 and data/fer2013.csv file.   
 Make a new folder which name is 'data' and insert all things inside it.   
-Make sure that dataset/jaffedbase, dataset/CK+48, dataset/fer2013.csv.  
+Make sure that data/jaffedbase, data/CK+48, data/fer2013.csv.  
 
-To make 'train_jaffe_Mask_원본.csv', 'train_jaffe_NoMask_원본.csv', 'masked_jaffedbase' folder that consists of masked images.  
+To make 6 files and 1 folder as follows   
+'train_jaffe_Mask_원본.csv'   
+'train_jaffe_Mask.csv'   
+'test_jaffe_Mask.csv'   
+'train_jaffe_NoMask_원본.csv'   
+'train_jaffe_NoMask.csv'   
+'test_jaffe_NoMask.csv'   
+'masked_jaffedbase' folder that consists of masked images.  
     
     $python gen_masked.py -data --dataset J
 
-To make 'train_ckplus_Mask_원본.csv', 'train_ckplus_NoMask_원본.csv', 'mask_CKplus' folder that consists of masked images
+To make 6 files and 1 folder   
+'train_ckplus_Mask_원본.csv'   
+'train_ckplus_Mask.csv'   
+'test_ckplus_Mask.csv'   
+'train_ckplus_NoMask_원본.csv'   
+'train_ckplus_NoMask.csv'   
+'test_ckplus_NoMask.csv'   
+'mask_CKplus' folder that consists of masked images.  
     
     $python gen_masked.py -data --dataset C
 
-To make 'train_fer2013_Mask_원본.csv', 'train_fer2013_NoMask_원본.csv'   
-Run the below command three times 
+To make 6 files   
+'train_fer2013_Mask_원본.csv'   
+'train_fer2013_Mask.csv'   
+'test_fer2013_Mask.csv'   
+'train_fer2013_NoMask_원본.csv'   
+'train_fer2013_NoMask.csv'   
+'test_fer2013_NoMask.csv'   
     
     $python gen_masked.py -data --dataset F
 
-by uncommenting the below parts one by one at sequence in 'gen_masked.py' file   
-
-    data = data[:11962]
-    # data = data[11962:23924]
-    # data = data[23924:]
-
-    df.to_csv('./data/train_fer2013_NoMask_원본_frac1.csv')
-    # df.to_csv('./data/train_fer2013_NoMask_원본_frac2.csv')
-    # df.to_csv('./data/train_fer2013_NoMask_원본_frac3.csv')
-
-    df.to_csv('./data/train_fer2013_Mask_원본_frac1.csv')
-    # df.to_csv('./data/train_fer2013_Mask_원본_frac2.csv')
-    # df.to_csv('./data/train_fer2013_Mask_원본_frac3.csv')
-
-Finally, combine three files into one, and name it 'train_fer2013_Mask_원본.csv' (or 'train_fer2013_NoMask_원본.csv')  
 
 ###    b) How to run
 #### &nbsp;&nbsp;&nbsp;&nbsp;Setup the datset
+Change the target file names into 'train.csv', and 'test.csv', respectively.   
+   
+For example, if you want to run the code with no masked Jaffe dataset, then change 'train_jaffe_NoMask.csv' and 'test_jaffe_NoMask.csv' into 'train.csv', and 'test.csv', respectively.  
+   
+Then run below code.   
 
             python main.py [-s [True]] [-d [data_path]]
                 --setup                     Setup the datset for the first time
