@@ -7,7 +7,7 @@ CS470 Final Project, emotion detection with masked data
 ## 2. Datasets
     JAFFE
     CK+
-    FER2013 skdjfl;jalgkj;
+    FER2013 skdjfl;
 
 ## 3. Prerequisites
 Install mtcnn
@@ -36,16 +36,16 @@ Make sure that dataset/jaffedbase, dataset/CK+48, dataset/fer2013.csv.
 
 To make 'train_jaffe_Mask_원본.csv', 'train_jaffe_NoMask_원본.csv', 'masked_jaffedbase' folder that consists of masked images.  
     
-    $python gen_masked.py [-data] [--dataset] J
+    $python gen_masked.py -data --dataset J
 
 To make 'train_ckplus_Mask_원본.csv', 'train_ckplus_NoMask_원본.csv', 'mask_CKplus' folder that consists of masked images
     
-    $python gen_masked.py [-data] [--dataset] C
+    $python gen_masked.py -data --dataset C
 
 To make 'train_fer2013_Mask_원본.csv', 'train_fer2013_NoMask_원본.csv'   
 RUN this three times 
     
-    $python gen_masked.py [-data] [--dataset] F
+    $python gen_masked.py -data --dataset F
 
 by uncommenting the below parts one by one at sequence in 'gen_masked.py' file   
 
