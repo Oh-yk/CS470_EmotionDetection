@@ -39,9 +39,11 @@ class Generate_data():
             return :- return PIL image object
         '''
         imgarray_str = str_img.split(' ')
-        imgarray = np.asarray(imgarray_str,dtype=np.uint8).reshape(48, 48)
-        ## For Jaffe
-        # imgarray = np.asarray(imgarray_str,dtype=np.uint8).reshape(256, 256)
+        if (len(imgarray_str) == 65536):
+            imgarray = np.asarray(imgarray_str,dtype=np.uint8).reshape(256, 256)
+        else:
+            imgarray = np.asarray(imgarray_str,dtype=np.uint8).reshape(48, 48)
+
         return Image.fromarray(imgarray)
 
     def save_images(self, datatype='train'):
