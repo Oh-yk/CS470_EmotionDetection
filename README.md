@@ -30,8 +30,8 @@ Download the dataset from following links:
 &nbsp;&nbsp;&nbsp;&nbsp;CK+ - https://www.kaggle.com/shawon10/ckplus.  
 &nbsp;&nbsp;&nbsp;&nbsp;FER2013 - https://www.kaggle.com/deadskull7/fer2013.  
     
-Make dataset/jaffedbase, dataset/CK+48 and fer2013.csv file.   
-Make a new folder which name is 'dataset' and insert all things inside it.   
+Make data/jaffedbase, data/CK+48 and data/fer2013.csv file.   
+Make a new folder which name is 'data' and insert all things inside it.   
 Make sure that dataset/jaffedbase, dataset/CK+48, dataset/fer2013.csv.  
 
 To make 'train_jaffe_Mask_원본.csv', 'train_jaffe_NoMask_원본.csv', 'masked_jaffedbase' folder that consists of masked images.  
@@ -53,13 +53,13 @@ by uncommenting the below parts one by one at sequence in 'gen_masked.py' file
     # data = data[11962:23924]
     # data = data[23924:]
 
-    df.to_csv('./dataset/train_fer2013_NoMask_원본_frac1.csv')
-    # df.to_csv('./dataset/train_fer2013_NoMask_원본_frac2.csv')
-    # df.to_csv('./dataset/train_fer2013_NoMask_원본_frac3.csv')
+    df.to_csv('./data/train_fer2013_NoMask_원본_frac1.csv')
+    # df.to_csv('./data/train_fer2013_NoMask_원본_frac2.csv')
+    # df.to_csv('./data/train_fer2013_NoMask_원본_frac3.csv')
 
-    df.to_csv('./dataset/train_fer2013_Mask_원본_frac1.csv')
-    # df.to_csv('./dataset/train_fer2013_Mask_원본_frac2.csv')
-    # df.to_csv('./dataset/train_fer2013_Mask_원본_frac3.csv')
+    df.to_csv('./data/train_fer2013_Mask_원본_frac1.csv')
+    # df.to_csv('./data/train_fer2013_Mask_원본_frac2.csv')
+    # df.to_csv('./data/train_fer2013_Mask_원본_frac3.csv')
 
 Finally, combine three files into one, and name it 'train_fer2013_Mask_원본.csv' (or 'train_fer2013_NoMask_원본.csv')  
 
