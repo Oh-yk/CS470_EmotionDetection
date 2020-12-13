@@ -9,10 +9,24 @@ CS470 Final Project, emotion detection with masked data
     CK+
     FER2013 skdjfl;
 
-## 3. Prerequisites
+## 3. Installation
 Install mtcnn
     
     $pip install mtcnn
+    
+To run the codes, you need to have the following libraries:
+* pytorch == 1.7.0+cu101
+* torchvision == 0.8.1+cu101
+* mtcnn == 0.1.0
+* cv2 == 4.1.2
+* tqdm == 4.41.1
+* PIL == 7.0.0
+* sklearn == 0.22.2.post1
+* matplotlib == 3.2.2
+* scipy == 1.4.1
+* numpy == 1.18.5
+* argparse == 1.1
+* seaborn == 0.11.0
 
 ## 4. Structure of this repository
 main.py : setup of the dataset and training loop  
