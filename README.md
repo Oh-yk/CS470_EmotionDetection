@@ -135,7 +135,7 @@ Change the files(train.csv, test.csv, val.csv, finaltest.csv, train folder, val 
 
 #### &nbsp;&nbsp;&nbsp;&nbsp;To test / visualize the model
 
-Make sure that the 'data path' should indicate the finaltest folder, but its name can be changed, just write down the path to the folder which is contain the test images for the target dataset.   
+Make sure that the 'data path' should indicate the finaltest folder, but its name can be changed, just write down the path to the folder that contains the test images for the target dataset.   
    
 Make sure that 'file_path' is the path to the finaltest.csv made at the Setup process, but its name can be changed, just write down the path to the file.   
 
