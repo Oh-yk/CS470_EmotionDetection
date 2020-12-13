@@ -17,7 +17,7 @@ from generate_data import Generate_data
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-def Train(epochs,train_loader,val_loader,criterion,optmizer,device, regulizer):
+def Train(epochs,train_loader,val_loader,criterion,optmizer,device, regularizer):
     '''
     Training Loop
     '''
@@ -36,7 +36,7 @@ def Train(epochs,train_loader,val_loader,criterion,optmizer,device, regulizer):
             optmizer.zero_grad()
             outputs = net(data)
             loss = criterion(outputs,labels)
-            if regulizer:
+            if regularizer:
                 l1 = 0
                 for p in net.parameters():
                     l1 = l1 + p.abs().sum()
@@ -54,7 +54,7 @@ def Train(epochs,train_loader,val_loader,criterion,optmizer,device, regulizer):
             data, labels = data.to(device), labels.to(device)
             val_outputs = net(data)
             val_loss = criterion(val_outputs, labels)
-            if regulizer:
+            if regularizer:
                 val_l1 = 0
                 for p in net.parameters():
                     val_l1 = val_l1 + p.abs().sum()
@@ -90,7 +90,7 @@ if __name__ == '__main__':
     parser.add_argument('-e', '--epochs', type= int, help= 'To apply regulization, set True')
     parser.add_argument('-lr', '--learning_rate', type= float, help= 'value of learning rate')
     parser.add_argument('-bs', '--batch_size', type= int, help= 'training/validation batch size')
-    parser.add_argument('-l', '--regulizer', type=bool, help='True when adding L1 regulization')
+    parser.add_argument('-l', '--regularizer', type=bool, help='True when adding L1 regulization')
     parser.add_argument('-t', '--train', type=bool, help='True when training')
     args = parser.parse_args()
 
@@ -129,10 +129,10 @@ if __name__ == '__main__':
         train_img_dir = args.data+'/'+'train/'
         validation_img_dir = args.data+'/'+'val/'
         
-        if args.regulizer:
-            regulizer = args.regulizer
+        if args.regularizer:
+            regularizer = args.regularizer
         else:
-            regulizer = False
+            regularizer = False
     
         transformation= transforms.Compose([transforms.ToTensor(),transforms.Normalize((0.5,),(0.5,))])
         train_dataset= Plain_Dataset(csv_file=traincsv_file, img_dir = train_img_dir, datatype = 'train', transform = transformation)
@@ -142,4 +142,4 @@ if __name__ == '__main__':
 
         criterion= nn.CrossEntropyLoss()
         optmizer= optim.Adam(net.parameters(),lr= lr)
-        Train(epochs, train_loader, val_loader, criterion, optmizer, device, regulizer)
+        Train(epochs, train_loader, val_loader, criterion, optmizer, device, regularizer)
