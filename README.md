@@ -4,10 +4,15 @@ CS470 Final Project, emotion detection with masked data
 ** This project is based on the 'Deep-Emotion (https://github.com/omarsayed7/Deep-Emotion)' paper **
 
 ## 1. Architecture
+The basic architecture of our project is based on the deep-emotion architecture.  
+We modified the model so that it can detect facial expressions while people wearing a mask.  
+We made three models(NoSTN, Channels_50, l1_0.001).  
+You can train these models using codes in the 'Usage' section.  
+
 ## 2. Datasets
     JAFFE
     CK+
-    FER2013 skdjfl;
+    FER2013
 
 ## 3. Installation
 Install mtcnn
