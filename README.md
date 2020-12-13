@@ -90,7 +90,7 @@ run the below code.
 
 
 ###    b) How to run
-#### &nbsp;&nbsp;&nbsp;&nbsp;Setup the datset
+#### &nbsp;&nbsp;&nbsp;&nbsp;Setup the dataset
 Change the target file names into 'train.csv', and 'test.csv', respectively.   
    
 For example, if you want to run the code with no masked Jaffe dataset, then change 'train_jaffe_NoMask.csv' and 'test_jaffe_NoMask.csv' into 'train.csv', and 'test.csv', respectively.  
@@ -98,7 +98,7 @@ For example, if you want to run the code with no masked Jaffe dataset, then chan
 To make 'val.csv', 'finaltest.csv', 'train folder', 'val folder', and 'finaltest folder', run the below code.   
 
             python main.py [-s [True]] [-d [data_path]]
-                --setup                     Setup the datset for the first time
+                --setup                     Setup the dataset for the first time
                 --data                       Data folder that contains data files
                 
                 ## Run the following code:
