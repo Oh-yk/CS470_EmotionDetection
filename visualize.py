@@ -21,8 +21,9 @@ parser.add_argument('-c', '--file', type=str,required = True, help='Path to the 
 parser.add_argument('-f', '--model', type=str,required = True, help='Path to pretrained model')
 parser.add_argument('-t', '--test_acc', action='store_true', help='Returns test accuracy and visualization of confusion matrix')
 parser.add_argument('-s', '--saliency_map', action='store_true', help='Returns saliency map for 10 test images')
-parser.add_argument('-m', '--channel50', type=bool, help= 'number of channel')
-parser.add_argument('-n', '--stn', type=bool, help= 'if you do not want to use stn, type False')
+parser.add_argument('-m', '--channel50', type=bool, help='number of channel')
+parser.add_argument('-n', '--stn', type=bool, help='if you do not want to use stn, type False')
+parser.add_argument('--jaffe', action='store_true', help='set if you are using the jaffe dataset')
 
 args = parser.parse_args()
 
@@ -91,9 +92,15 @@ if args.test_acc:
     plt.show()
 
 if args.saliency_map:
-    img_dim = 256
-    mask_dim = 56  # Must be a multiple of 8
-    stride = 8
+    # Set if Jaffe Dataset is being used
+    if args.jaffe:
+        img_dim = 256
+        mask_dim = 56  # Must be a multiple of 8
+        stride = 8
+    else:
+        img_dim = 48
+        mask_dim = 10  # Must be a multiple of 8
+        stride = 2
     mask_channels = (img_dim - mask_dim) // stride + 1  # A total of mask_channels^2 masks
     print('Creating saliency map with mask_dim: {} and stride: {}'.format(mask_dim, stride))
     print('Number of masked images to be evaluated: {}'.format(mask_channels**2))
