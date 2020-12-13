@@ -49,10 +49,14 @@ Download the dataset from following links:
 &nbsp;&nbsp;&nbsp;&nbsp;CK+ - https://www.kaggle.com/shawon10/ckplus.  
 &nbsp;&nbsp;&nbsp;&nbsp;FER2013 - https://www.kaggle.com/deadskull7/fer2013.  
     
-Make data/jaffedbase, data/CK+48 and data/fer2013.csv file.   
-Make a new folder which name is 'data' and insert all things inside it.   
 The 'jaffedbase' folder, the 'CK+48' folder, and the 'fer2013.csv' file will be downloaded by upper links, respectively.   
-Make sure that data/jaffedbase, data/CK+48, data/fer2013.csv.  
+   
+You can choose any dataset that you want, but we recommend 'CK+48' dataset.   
+   
+Make a new folder which name is 'data' and insert all things inside it.   
+   
+For example, the path to the dataset folder should be './data/CK+48'.   
+   
 
 To make 6 files and 1 folder as follows   
 'train_jaffe_Mask_원본.csv'   
@@ -94,9 +98,16 @@ run the below code.
 #### &nbsp;&nbsp;&nbsp;&nbsp;Setup the dataset
 Change the target file names into 'train.csv', and 'test.csv', respectively.   
    
-For example, if you want to run the code with no masked Jaffe dataset, then change 'train_jaffe_NoMask.csv' and 'test_jaffe_NoMask.csv' into 'train.csv', and 'test.csv', respectively.  
+For example, if you want to run the code with no masked CK+48 dataset, then change 'train_ckplus_NoMask.csv' and 'test_ckplus_NoMask.csv' into 'train.csv' and 'test.csv', respectively.  
    
 To make 'val.csv', 'finaltest.csv', 'train folder', 'val folder', and 'finaltest folder', run the below code.   
+   
+You will need the files and folders for the Masked CK+48 dataset,   
+so I recommend that insert all the files ('train.csv', 'test.csv', 'val.csv', 'finaltest.csv', 'train folder', 'val folder', and 'finaltest folder') into a new folder which name is 'NoMasked_ckplus'.   
+   
+And then repeat the setup process with the 'train_ckplus_Mask.csv' and 'test_ckplus_Mask.csv'.   
+   
+After running the code, insert all the files ('train.csv', 'test.csv', 'val.csv', 'finaltest.csv', 'train folder', 'val folder', and 'finaltest folder') into a new folder which name is 'Masked_ckplus'.   
 
             python main.py [-s [True]] [-d [data_path]]
                 --setup                     Setup the dataset for the first time
@@ -108,7 +119,10 @@ To make 'val.csv', 'finaltest.csv', 'train folder', 'val folder', and 'finaltest
              
 #### &nbsp;&nbsp;&nbsp;&nbsp;To train the model
 Change the file/folder names(train.csv, test.csv, val.csv, finaltest.csv, train folder, val folder, finaltest folder) of the target dataset(e.g. Masked Jaffe) into the file/folder names as 'train.csv', 'test.csv', 'val.csv', 'finaltest.csv', 'train' folder, 'val' folder, and 'finaltest' folder, respectively.   
-
+   
+If you followed my recommendation, you don't need to change the file/folder names.   
+Just write down './data/NoMasked_ckplus'(or './data/Masked_ckplus') into data_path below.   
+   
 Then run the below code.   
    
 
@@ -140,6 +154,9 @@ Then run the below code.
 Make sure that the 'data path' should indicate the finaltest folder, but its name can be changed, just write down the path to the folder that contains the test images for the target dataset.   
    
 Make sure that 'file_path' is the path to the finaltest.csv made at the Setup process, but its name can be changed, just write down the path to the file.   
+   
+Caution: If you use the Jaffe dataset, then you should set True for the --jaffeset parameter.   
+   
 
             python visualize.py [-t] [-c] [--data  [data_path]] [--file  [file_path]] [--model [model_path]]
                                         [--channel50] [--stn] [--regularizer] [--jaffeset]
