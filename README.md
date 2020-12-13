@@ -106,7 +106,7 @@ Make sure that the target files(train.csv, test.csv, val.csv, finaltest.csv, tra
 
             python main.py [-t] [--data [data_path]] [--hparams [hyperparams]]
                                         [--epochs] [--learning_rate] [--batch_size]
-                                        [--channel50] [--stn] [--regulizer]
+                                        [--channel50] [--stn] [--regularizer]
                 --data                       Data folder that contains training and validation files
                 --train                      True when training
                 --hparams                    True when changing the hyperparameters
@@ -115,7 +115,7 @@ Make sure that the target files(train.csv, test.csv, val.csv, finaltest.csv, tra
                 --batch_size                 Training/validation batch size
                 --channel50                  To modify the channel number as 50, set True
                 --stn                        To remove stn process, set False
-                --regulizer                  To apply regulization, set True
+                --regularizer                To apply regulization, set True
                 
                 ## Run the following code:
                     Original deep_emotion model:
@@ -125,7 +125,7 @@ Make sure that the target files(train.csv, test.csv, val.csv, finaltest.csv, tra
                     Channel_50 model:
                         python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 --channel50 True
                     L1_0.001 model:
-                        python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 --regulizer True
+                        python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 --regularizer True
 
 #### &nbsp;&nbsp;&nbsp;&nbsp;To test / visualize the model
 
@@ -133,7 +133,7 @@ Make sure that the 'data path' should indicate the finaltest folder, but its nam
 Make sure that 'file_path' is the path to the finaltest.csv made at the Setup process, but its name can be changed, just write down the path to the file.   
 
             python visualize.py [-t] [-c] [--data  [data_path]] [--file  [file_path]] [--model [model_path]]
-                                        [--channel50] [--stn] [--regulizer] [--jaffeset]
+                                        [--channel50] [--stn] [--regularizer] [--jaffeset]
             
                 --data                       Path to the finaltest folder that contains finaltest images
                 --file                       Path to the finaltest.csv
@@ -142,7 +142,7 @@ Make sure that 'file_path' is the path to the finaltest.csv made at the Setup pr
                 --saliency_map               Returns saliency map for 10 test images
                 --channel50                  If the pretrained model's channel number is 50, set True
                 --stn                        If the pretrained model ignored stn process, set False
-                --regulizer                  If the pretrained model used regulization, set True
+                --regularizer                If the pretrained model used regulization, set True
                 --jaffeset                   If you are using the jaffe dataset, set True
                 
                 ## Run the following code:
@@ -156,7 +156,7 @@ Make sure that 'file_path' is the path to the finaltest.csv made at the Setup pr
                         python visualize.py -t --data './data/finaltest' --file './data/finaltest.csv' --model 'model_path' --channel50 True
 
                     L1_0.001 pretrained model:
-                        python visualize.py -t --data './data/finaltest' --file './data/finaltest.csv' --model 'model_path' --regulizer True
+                        python visualize.py -t --data './data/finaltest' --file './data/finaltest.csv' --model 'model_path' --regularizer True
 
                     
         
