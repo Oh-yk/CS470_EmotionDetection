@@ -109,7 +109,7 @@ Make sure that the target files(train.csv, test.csv, val.csv, finaltest.csv, tra
                     L1_0.001 model:
                         python main.py -t TRAIN --data './data' --hyperparams True --epochs 150 --learning_rate 0.004 --batch_size 64 --regulizer True
 
-#### &nbsp;&nbsp;&nbsp;&nbsp;To validate the model
+#### &nbsp;&nbsp;&nbsp;&nbsp;To test / visualize the model
 
 Make sure that the data path(finaltest folder) should contain the test images for the target dataset.   
 
