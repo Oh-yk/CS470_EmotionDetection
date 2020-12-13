@@ -133,7 +133,7 @@ Make sure that the 'data path' should indicate the finaltest folder, but its nam
 Make sure that 'file_path' is the path to the finaltest.csv made at the Setup process, but its name can be changed, just write down the path to the file.   
 
             python visualize.py [-t] [-c] [--data  [data_path]] [--file  [file_path]] [--model [model_path]]
-                                        [--channel50] [--stn] [--regulizer]
+                                        [--channel50] [--stn] [--regulizer] [--jaffeset]
             
                 --data                       Path to the finaltest folder that contains finaltest images
                 --file                       Path to the finaltest.csv
@@ -143,6 +143,7 @@ Make sure that 'file_path' is the path to the finaltest.csv made at the Setup pr
                 --channel50                  If the pretrained model's channel number is 50, set True
                 --stn                        If the pretrained model ignored stn process, set False
                 --regulizer                  If the pretrained model used regulization, set True
+                --jaffeset                   If you are using the jaffe dataset, set True
                 
                 ## Run the following code:
                     Original pretrained deep_emotion model:
