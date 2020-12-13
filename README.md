@@ -107,7 +107,9 @@ To make 'val.csv', 'finaltest.csv', 'train folder', 'val folder', and 'finaltest
                    
              
 #### &nbsp;&nbsp;&nbsp;&nbsp;To train the model
-Change the files(train.csv, test.csv, val.csv, finaltest.csv, train folder, val folder, finaltest folder) of target dataset(e.g. Jaffe) into the file names as 'train.csv', 'test.csv', 'val.csv', 'finaltest.csv', 'train' folder, 'val' folder, and 'finaltest' folder, respectively.   
+Change the file names(train.csv, test.csv, val.csv, finaltest.csv, train folder, val folder, finaltest folder) of the target dataset(e.g. Masked Jaffe) into the file names as 'train.csv', 'test.csv', 'val.csv', 'finaltest.csv', 'train' folder, 'val' folder, and 'finaltest' folder, respectively.   
+
+Then run the below code.   
    
 
             python main.py [-t] [--data [data_path]] [--hparams [hyperparams]]
