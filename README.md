@@ -55,7 +55,8 @@ To make 6 files and 1 folder as follows
 'train_jaffe_NoMask_원본.csv'   
 'train_jaffe_NoMask.csv'   
 'test_jaffe_NoMask.csv'   
-'masked_jaffedbase' folder that consists of masked images.  
+'masked_jaffedbase' folder that consists of masked images,   
+run the below code.   
     
     $python gen_masked.py -data J
 
@@ -66,7 +67,8 @@ To make 6 files and 1 folder
 'train_ckplus_NoMask_원본.csv'   
 'train_ckplus_NoMask.csv'   
 'test_ckplus_NoMask.csv'   
-'mask_CKplus' folder that consists of masked images.  
+'mask_CKplus' folder that consists of masked images,  
+run the below code.   
     
     $python gen_masked.py -data C
 
@@ -76,7 +78,8 @@ To make 6 files
 'test_fer2013_Mask.csv'   
 'train_fer2013_NoMask_원본.csv'   
 'train_fer2013_NoMask.csv'   
-'test_fer2013_NoMask.csv'   
+'test_fer2013_NoMask.csv',   
+run the below code.   
     
     $python gen_masked.py -data F
 
@@ -87,7 +90,7 @@ Change the target file names into 'train.csv', and 'test.csv', respectively.
    
 For example, if you want to run the code with no masked Jaffe dataset, then change 'train_jaffe_NoMask.csv' and 'test_jaffe_NoMask.csv' into 'train.csv', and 'test.csv', respectively.  
    
-Then run below code.   
+To make 'val.csv', 'finaltest.csv', 'train folder', 'val folder', and 'finaltest folder', run the below code.   
 
             python main.py [-s [True]] [-d [data_path]]
                 --setup                     Setup the datset for the first time
@@ -95,7 +98,8 @@ Then run below code.
                 
                 ## Run the following code:
                     python main.py -s True -d './data'
-                
+                   
+             
 #### &nbsp;&nbsp;&nbsp;&nbsp;To train the model
 
 Make sure that the target files(train.csv, test.csv, val.csv, finaltest.csv, train folder, val folder, finaltest folder) that you want to use for training are the files from the target dataset.   
@@ -125,7 +129,8 @@ Make sure that the target files(train.csv, test.csv, val.csv, finaltest.csv, tra
 
 #### &nbsp;&nbsp;&nbsp;&nbsp;To test / visualize the model
 
-Make sure that the data path(finaltest folder) should contain the test images for the target dataset.   
+Make sure that the 'data path' should indicate the finaltest folder, but its name can be changed, just write down the path to the folder which is contain the test images for the target dataset.   
+Make sure that 'file_path' is the path to the finaltest.csv made at the Setup process, but its name can be changed, just write down the path to the file.   
 
             python visualize.py [-t] [-c] [--data  [data_path]] [--file  [file_path]] [--model [model_path]]
                                         [--channel50] [--stn] [--regulizer]
