@@ -103,7 +103,7 @@ For example, if you want to run the code with no masked CK+48 dataset, then chan
 To make 'val.csv', 'finaltest.csv', 'train folder', 'val folder', and 'finaltest folder', run the below code.   
    
 You will need the files and folders for the Masked CK+48 dataset,   
-so I recommend that insert all the files ('train.csv', 'test.csv', 'val.csv', 'finaltest.csv', 'train folder', 'val folder', and 'finaltest folder') into a new folder which name is 'NoMasked_ckplus'.   
+so I recommend to insert all the files ('train.csv', 'test.csv', 'val.csv', 'finaltest.csv', 'train folder', 'val folder', and 'finaltest folder') into a new folder which name is 'NoMasked_ckplus'.   
    
 And then repeat the setup process with the 'train_ckplus_Mask.csv' and 'test_ckplus_Mask.csv'.   
    
