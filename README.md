@@ -51,6 +51,7 @@ Download the dataset from following links:
     
 Make data/jaffedbase, data/CK+48 and data/fer2013.csv file.   
 Make a new folder which name is 'data' and insert all things inside it.   
+The 'jaffedbase' folder, the 'CK+48' folder, and the 'fer2013.csv' file will be downloaded by upper links, respectively.   
 Make sure that data/jaffedbase, data/CK+48, data/fer2013.csv.  
 
 To make 6 files and 1 folder as follows   
@@ -106,8 +107,8 @@ To make 'val.csv', 'finaltest.csv', 'train folder', 'val folder', and 'finaltest
                    
              
 #### &nbsp;&nbsp;&nbsp;&nbsp;To train the model
-
-Make sure that the target files(train.csv, test.csv, val.csv, finaltest.csv, train folder, val folder, finaltest folder) that you want to use for training are the files from the target dataset.   
+Change the files(train.csv, test.csv, val.csv, finaltest.csv, train folder, val folder, finaltest folder) of target dataset(e.g. Jaffe) into the file names as 'train.csv', 'test.csv', 'val.csv', 'finaltest.csv', 'train' folder, 'val' folder, and 'finaltest' folder, respectively.   
+   
 
             python main.py [-t] [--data [data_path]] [--hparams [hyperparams]]
                                         [--epochs] [--learning_rate] [--batch_size]
@@ -135,6 +136,7 @@ Make sure that the target files(train.csv, test.csv, val.csv, finaltest.csv, tra
 #### &nbsp;&nbsp;&nbsp;&nbsp;To test / visualize the model
 
 Make sure that the 'data path' should indicate the finaltest folder, but its name can be changed, just write down the path to the folder which is contain the test images for the target dataset.   
+   
 Make sure that 'file_path' is the path to the finaltest.csv made at the Setup process, but its name can be changed, just write down the path to the file.   
 
             python visualize.py [-t] [-c] [--data  [data_path]] [--file  [file_path]] [--model [model_path]]
